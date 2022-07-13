@@ -1,11 +1,11 @@
-(function () {
+(function() {
     'use strict';
 
-    var chalk = require('chalk'),
+    const chalk = require('chalk'),
         logSymbols = require('log-symbols'),
         stripColor = require('strip-ansi');
 
-    var MinimalReporter = function (hasColors, options) {
+    const MinimalReporter = function(hasColors, options) {
         chalk.enabled = hasColors;
 
         // Configuration
@@ -19,6 +19,10 @@
         options.color.failure = options.color.failure || 'red';
         options.color.success = options.color.success || 'green';
         options.color.ignore = options.color.ignore || 'blue';
+        options.successStatus = options.successStatus || {};
+        options.successStatus.printTestName =
+            options.successStatus.hasOwnProperty('printTestName')
+                ? options.successStatus.printTestName : true;
 
         if (hasColors) {
             this.USE_COLORS = true;
@@ -32,23 +36,27 @@
             options.icon.ignore = noColor(options.icon.ignore);
         }
 
-        this.onRunStart = function () {
+        this.onRunStart = function() {
             this._dotsCount = 0;
         };
 
-        this.specSuccess = function (browser, result) {
-            this._writeCharacterWithFullName(options.icon.success, result);
+        this.specSuccess = function(browser, result) {
+            if (options.successStatus.printTestName) {
+                this._writeCharacterWithFullName(options.icon.success, result);
+            } else {
+                this._writeCharacter(options.icon.success);
+            }
         };
 
-        this.specFailure = function (browser, result) {
+        this.specFailure = function(browser, result) {
             this._writeCharacterWithFullName(options.icon.failure, result);
         };
 
-        this.specSkipped = function (browser, result) {
+        this.specSkipped = function(browser, result) {
             this._writeCharacter(options.icon.ignore);
         };
 
-        this.onSpecComplete = function (browser, result) {
+        this.onSpecComplete = function(browser, result) {
             if (result.skipped) {
                 this.specSkipped(browser, result);
             } else if (result.success) {
@@ -58,16 +66,16 @@
             }
         };
 
-        this.onRunComplete = function (browser, result) {
-            write('=========== Completed ===========\n');
+        this.onRunComplete = function(browser, result) {
+            write(`=========== Completed ===========\n`);
         };
 
-        this._writeCharacter = function (character) {
+        this._writeCharacter = function(character) {
             this._dotsCount = (1 + this._dotsCount) % options.nbDotsPerLine;
             write(this._dotsCount ? character : character + '\n');
         };
 
-        this._writeCharacterWithFullName = function (character, result) {
+        this._writeCharacterWithFullName = function(character, result) {
             write(`${character} ${result.fullName}\n`);
         };
     };
