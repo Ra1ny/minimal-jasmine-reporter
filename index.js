@@ -5,7 +5,7 @@
         logSymbols = require('log-symbols'),
         stripColor = require('strip-ansi');
 
-    var SuperDotsReporter = function (hasColors, options) {
+    var MinimalReporter = function (hasColors, options) {
         chalk.enabled = hasColors;
 
         // Configuration
@@ -59,7 +59,7 @@
         };
 
         this.onRunComplete = function (browser, result) {
-            write('\n');
+            write('=========== Completed ===========\n');
         };
 
         this._writeCharacter = function (character) {
@@ -72,9 +72,9 @@
         };
     };
 
-    SuperDotsReporter.$inject = ['config.colors', 'config.superDotsReporter'];
+    MinimalReporter.$inject = ['config.colors', 'config.minimalReporter'];
 
-    module.exports = { 'reporter:super-dots': ['type', SuperDotsReporter] };
+    module.exports = { 'reporter:minimal': ['type', MinimalReporter] };
 
     function colorInto(color, str) {
         return chalk[color](stripColor(str));
