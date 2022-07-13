@@ -1,7 +1,6 @@
 {
   "name": "minimal-karma-jasmine-reporter",
   "version": "1.2.0",
-  "type": "module",
   "description": "Single line, coloured, descriptive karma jasmine reporter, improved upon dots reporter. Great for fixing tests.",
   "main": "index.js",
   "scripts": {
