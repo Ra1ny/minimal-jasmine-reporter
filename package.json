@@ -1,0 +1,33 @@
+{
+  "name": "minimal-karma-jasmine-reporter",
+  "version": "1.0.0",
+  "description": "Single line, coloured, descriptive karma jasmine reporter, improved upon dots reporter. Great for fixing tests.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ra1ny/minimal-karma-jasmine-reporter.git"
+  },
+  "keywords": [
+    "minimal",
+    "karma",
+    "jasmine",
+    "reporter",
+    "single-line",
+    "colored",
+    "coloured"
+  ],
+  "author": "Kirill Gordeenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ra1ny/minimal-karma-jasmine-reporter/issues"
+  },
+  "homepage": "https://github.com/Ra1ny/minimal-karma-jasmine-reporter#readme",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "log-symbols": "^5.1.0",
+    "strip-ansi": "^7.0.1"
+  }
+}
