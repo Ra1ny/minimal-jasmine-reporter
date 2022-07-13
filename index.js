@@ -1,9 +1,9 @@
+import chalk from 'chalk';
+import logSymbols from 'log-symbols';
+import stripColor from 'strip-ansi';
+
 (function() {
     'use strict';
-
-    const chalk = require('chalk'),
-        logSymbols = require('log-symbols'),
-        stripColor = require('strip-ansi');
 
     const MinimalReporter = function(hasColors, options) {
         chalk.enabled = hasColors;
